@@ -1,0 +1,6 @@
+peso=input("ingrese su peso ")
+pesos=float(peso)
+alto=input("cuanto mides? ")
+altop=float(alto)
+imc=pesos/(altop*altop)
+print("tu imc corresponde a ",imc)
