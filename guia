@@ -1,0 +1,54 @@
+import RPi.GPIO as GPIO
+import time
+
+
+amarillo1 = 22
+verde1=4
+rojo1=5
+verde2=23
+amarillo2=25
+rojo2=12
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(amarillo1, GPIO.OUT) 
+GPIO.setup(amarillo2,GPIO.OUT)
+GPIO.setup(rojo1,GPIO.OUT)
+GPIO.setup(rojo2,GPIO.OUT)
+GPIO.setup(verde1,GPIO.OUT)
+GPIO.setup(verde2,GPIO.OUT)
+
+
+
+try:
+    print("Parpadeando LED... (Presiona Ctrl+C para salir)")
+    while True:
+        GPIO.output(rojo1, True) 
+        GPIO.output(verde2, True)  
+        time.sleep(2)               
+        GPIO.output(verde2,False)
+        GPIO.output(amarillo2, True) 
+        time.sleep(2)
+        GPIO.output(amarillo2,False)
+        GPIO.output(rojo2, True) 
+        time.sleep(1)
+        GPIO.output(rojo1,False)
+        GPIO.output(amarillo1, True) 
+        time.sleep(2)
+        GPIO.output(amarillo1,False)
+        GPIO.output(verde1, True) 
+        time.sleep(2)
+        GPIO.output(verde1,False)
+        GPIO.output(amarillo1, True) 
+        time.sleep(2)
+        GPIO.output(amarillo1,False)
+        GPIO.output(rojo1, True) 
+        time.sleep(1)
+        GPIO.output(rojo2,False)
+        GPIO.output(amarillo2, True)
+        time.sleep(2)
+        GPIO.output(amarillo2,False)
+        
+
+except KeyboardInterrupt:
+    print("Saliendo...")
+finally:
+    GPIO.cleanup()
