@@ -2,31 +2,55 @@ import time
 import board
 import neopixel
 import random
+import RPi.GPIO as GPIO
+def leerboton ():
+    return GPIO.input(17) 
+
+boton=17
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(boton,GPIO.IN)
 
 
 
 pixel_pin = board.D18
 num_pixels = 16
-ORDER = neopixel.GRB # Orden de colores (A veces es RGB)
+ORDER = neopixel.GRB 
 
 pixels = neopixel.NeoPixel(
     pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER
 )
 
-eleccion= random.randint(0, 16)
-pixels[eleccion]=(255,0,0)
-pixels.show()
 
-
-try:
-    while True:
-        for indice in range(0,16):
-            pixels[indice]=(255,0,0)
+while True:
+    tiempo=1
+    A=0
+    eleccion= random.randint(1,10)
+    while A==0:
+        
+        for indice in range(16):
+            pixels[indice]=(0,0,255)
+            pixels[eleccion]=(255,0,0)
             pixels.show()
-            time.sleep(0.1)
-            pixels[indice]=(0,0,0)
-       
+            print(leerboton())
+               
+           # if leerboton()==False:
+           #     if indice==eleccion:
+           #         pixels.fill=(0,255,0)
+           #         time.sleep(2)
+           #         pixels.fill=(0,0,0)
+        #         tiempo=tiempo-0.2
 
-except KeyboardInterrupt:
-    pixels.fill((0, 0, 0))
-    pixels.show()
+                
+              
+         #       else:
+          #          pixels.fill=(255,0,0)
+           #         time.sleep(2)
+            #        pixels.fill=(0,0,0)
+            #        A=A+1
+             #       break
+                       
+            time.sleep(tiempo)
+            pixels[indice]=(0,0,0)
+            pixels.show()
+            
+
