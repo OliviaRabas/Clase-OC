@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>naves espaciales</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='naves.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://ipm.edu.ar/assets/img/logo.png" alt="Logo IPM">
+        </div>
+        <h2>Videos de naves espaciales</h2>
+        <input type="checkbox" id="menu-toggle">
+
+        <label for="menu-toggle" class="hamburger"></label>
+
+        <nav class="menu">
+            <a href="{{url_for('index')}}">Inicio</a>
+            <a href="{{url_for('receta')}}">receta de milanesa</a>
+            <a href="{{url_for('album')}}">album de plantas</a>
+            <a href="{{url_for('fomulario')}}">formulario</a>
+            <a href="{{url_for('menu')}}">menu de cafeteria</a>
+        </nav>
+    </header>
+    <main>
+        <iframe width="895" height="503" src="https://www.youtube.com/embed/pAGYsqfXkyA" title="The Final Launch of Discovery" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="895" height="503" src="https://www.youtube.com/embed/C3iHAgwIYtI" title="Starship&#39;s Second Flight Test" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </main>
+    <footer>
+        <a href="{{url_for('footer')}}" class="sobre-nosotras">Sobre nosotras</a>
+
+        <h6>
+            © 2026. Todos los derechos reservados
+        </h6>
+
+        <p class="slogan">
+            "Pili y Oli: entre trenzas, rulos y líneas de código, crean sueños que cobran vida."
+        </p>
+
+    </footer>
+    
+</body>
+</html>

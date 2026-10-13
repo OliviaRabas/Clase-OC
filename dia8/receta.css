@@ -1,0 +1,338 @@
+/* ==========================================
+   ESTILOS GENERALES Y VARIABLES (Receta OLPI)
+   ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --primary-color: #3b2314;       /* Café espresso oscuro */
+    --accent-color: #c28e50;        /* Tono tostado / madera cálida */
+    --bg-cream: #fbf9f5;            /* Fondo crema suave */
+    --card-bg: #ffffff;             /* Blanco puro para tarjetas */
+    --text-color: #2c221e;          /* Texto principal suave */
+    --shadow-soft: 0 10px 30px rgba(59, 35, 20, 0.08);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================
+   HEADER Y LOGO
+   ========================================== */
+header {
+    position: relative;
+    background: var(--card-bg);
+    padding: 1.2rem 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    z-index: 100;
+}
+
+/* --- Modificación del Logo solicitada --- */
+.logo {
+    position: absolute;
+    left: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    padding: 0;
+    z-index: 3;
+    transition: transform 0.3s ease;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: transparent;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.25));
+}
+
+.logo:hover {
+    transform: translateY(-50%) rotate(-5deg) scale(1.08);
+}
+/* ------------------------------------------- */
+
+header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    letter-spacing: 0.5px;
+    text-align: center;
+    padding: 0 3rem;
+}
+
+/* ==========================================
+   MENÚ DE NAVEGACIÓN Y HAMBURGUESA
+   ========================================== */
+#menu-toggle {
+    display: none;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    width: 28px;
+    height: 20px;
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+    background: transparent;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+.hamburger::before {
+    top: 0;
+    box-shadow: 0 8px 0 var(--primary-color);
+}
+
+.hamburger::after {
+    bottom: 0;
+}
+
+.menu {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    position: relative;
+}
+
+.menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: var(--transition);
+}
+
+.menu a:hover {
+    color: var(--accent-color);
+}
+
+.menu a:hover::after {
+    width: 100%;
+}
+
+/* ==========================================
+   CONTENIDO PRINCIPAL (RECETA)
+   ========================================== */
+main {
+    flex: 1;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+main h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1.2rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.3rem;
+    display: inline-block;
+}
+
+main ul {
+    background-color: var(--card-bg);
+    padding: 1.8rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 2.5rem;
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.8rem 1.5rem;
+    border: 1px solid rgba(194, 142, 80, 0.15);
+}
+
+main ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 1.02rem;
+    color: var(--text-color);
+}
+
+main ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+main ol {
+    list-style: none;
+    counter-reset: paso-counter;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+main ol li {
+    counter-increment: paso-counter;
+    background-color: var(--card-bg);
+    padding: 1.5rem 1.8rem 1.5rem 4.2rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    transition: var(--transition);
+    border: 1px solid rgba(194, 142, 80, 0.15);
+    line-height: 1.6;
+}
+
+main ol li:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-color);
+    box-shadow: 0 12px 30px rgba(59, 35, 20, 0.1);
+}
+
+main ol li::before {
+    content: counter(paso-counter);
+    position: absolute;
+    left: 1.2rem;
+    top: 1.5rem;
+    width: 32px;
+    height: 32px;
+    background-color: var(--accent-color);
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(194, 142, 80, 0.3);
+}
+
+main ol li strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* ==========================================
+   PIE DE PÁGINA (FOOTER)
+   ========================================== */
+footer {
+    background-color: var(--primary-color);
+    color: #f3ece4;
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: auto;
+}
+
+footer .sobre-nosotras {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+footer .sobre-nosotras:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+footer h6 {
+    font-size: 0.85rem;
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+footer .slogan {
+    font-style: italic;
+    font-size: 0.95rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-top: 0.3rem;
+    color: #e6dfd5;
+}
+
+/* ==========================================
+   DISEÑO RESPONSIVO (Menú Hamburguesa)
+   ========================================== */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--card-bg);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: clip-path 0.4s ease-in-out;
+        z-index: 99;
+    }
+
+    #menu-toggle:checked ~ .menu {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    header h2 {
+        font-size: 1.1rem;
+        padding: 0 2.5rem;
+    }
+
+    main ul {
+        grid-template-columns: 1fr;
+    }
+}

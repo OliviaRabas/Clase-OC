@@ -1,0 +1,671 @@
+/* ==========================================
+   🎀 FORMULARIO - PILI Y OLI
+   Estilo elegante, romántico y minimalista
+   ========================================== */
+
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --crema: #fffaf5;
+    --rosa: #f4dada;
+    --rosa-fuerte: #d99a9a;
+    --bordo: #773b4b;
+    --texto: #49373b;
+    --gris: #927f83;
+    --blanco: #ffffff;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Georgia", "Times New Roman", serif;
+    color: var(--texto);
+    background-color: var(--crema);
+
+    background-image:
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(244, 218, 218, 0.65),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(217, 154, 154, 0.18),
+            transparent 30%
+        );
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ==========================================
+   ENCABEZADO
+   ========================================== */
+
+header {
+    position: relative;
+    z-index: 10;
+
+    width: 100%;
+    min-height: 105px;
+    padding: 20px 6%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+
+    background-color: rgba(255, 250, 245, 0.95);
+
+    border-bottom: 1px solid #ead5d5;
+
+    box-shadow: 0 4px 20px rgba(119, 59, 75, 0.04);
+}
+
+.logo {
+    position: absolute;
+
+    left: 28px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    padding: 0;
+
+    z-index: 3;
+
+    transition:
+        transform 0.3s ease;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+    background: transparent;
+
+    filter:
+        drop-shadow(
+            0 2px 3px rgba(0, 0, 0, 0.25)
+        );
+}
+
+.logo:hover {
+    transform:
+        translateY(-50%)
+        rotate(-5deg)
+        scale(1.08);
+}
+/* TÍTULO */
+
+header h2 {
+    flex: 1;
+
+    text-align: center;
+
+    color: var(--bordo);
+
+    font-size: 29px;
+    font-weight: normal;
+    letter-spacing: 2px;
+}
+
+header h2::after {
+    content: "";
+
+    display: block;
+
+    width: 55px;
+    height: 2px;
+
+    margin: 10px auto 0;
+
+    background-color: var(--rosa-fuerte);
+}
+
+
+/* ==========================================
+   MENÚ HAMBURGUESA
+   ========================================== */
+
+
+#menu-toggle {
+    display: none;
+}
+
+/* BOTÓN */
+
+.hamburger {
+    position: relative;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: auto;
+    flex-shrink: 0;
+
+    cursor: pointer;
+
+    background-color: var(--blanco);
+
+    border: 1px solid #e8caca;
+    border-radius: 50%;
+
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/* LÍNEAS */
+
+.hamburger::before,
+.hamburger::after {
+    content: "";
+
+    position: absolute;
+
+    width: 20px;
+    height: 2px;
+
+    background-color: var(--bordo);
+
+    transition: transform 0.3s ease;
+}
+
+.hamburger::before {
+    transform: translateY(-5px);
+}
+
+.hamburger::after {
+    transform: translateY(5px);
+}
+
+
+/* EFECTO HOVER */
+
+.hamburger:hover {
+    background-color: var(--rosa);
+    transform: scale(1.05);
+}
+
+
+/* TRANSFORMACIÓN A X */
+
+#menu-toggle:checked + .hamburger::before {
+    transform: rotate(45deg);
+}
+
+#menu-toggle:checked + .hamburger::after {
+    transform: rotate(-45deg);
+}
+
+#menu-toggle:focus-visible + .hamburger {
+    outline: 2px solid var(--bordo);
+    outline-offset: 4px;
+}
+
+
+/* ==========================================
+   MENÚ DESPLEGABLE
+   ========================================== */
+
+.menu {
+    position: absolute;
+
+    top: calc(100% + 12px);
+    right: 6%;
+
+    width: 270px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    padding: 12px;
+
+    background-color: var(--crema);
+
+    border: 1px solid #ead5d5;
+    border-radius: 18px;
+
+    box-shadow: 0 15px 40px rgba(119, 59, 75, 0.13);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(-10px);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+/* MOSTRAR MENÚ */
+
+#menu-toggle:checked ~ .menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform: translateY(0);
+}
+
+
+/* ENLACES */
+
+.menu a {
+    padding: 13px 15px;
+
+    color: var(--texto);
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+
+    border-radius: 10px;
+
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease,
+        padding-left 0.25s ease;
+}
+
+.menu a:hover {
+    color: var(--bordo);
+
+    background-color: var(--rosa);
+
+    padding-left: 22px;
+}
+
+
+/* ==========================================
+   FORMULARIO PRINCIPAL
+   ========================================== */
+
+main {
+    position: relative;
+
+    width: 500px;
+
+    margin: 65px auto;
+    padding: 45px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    background-color: rgba(255, 255, 255, 0.85);
+
+    border: 1px solid #ecdada;
+    border-radius: 5px;
+
+    box-shadow:
+        12px 12px 0 rgba(244, 218, 218, 0.65),
+        0 15px 40px rgba(119, 59, 75, 0.07);
+
+    flex: 1 0 auto;
+}
+
+
+/* DETALLE DECORATIVO */
+
+main::before {
+    content: "✿";
+
+    position: absolute;
+
+    top: -23px;
+    right: 25px;
+
+    color: var(--rosa-fuerte);
+
+    font-size: 35px;
+}
+
+
+/* ETIQUETAS */
+
+main label {
+    display: block;
+
+    margin: 16px 0 8px;
+
+    color: var(--bordo);
+
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+/* CAMPOS DE TEXTO */
+
+main input[type="text"],
+main input[type="password"],
+main input[type="number"],
+main input[type="date"] {
+    width: 100%;
+    height: 46px;
+
+    padding: 12px 14px;
+
+    color: var(--texto);
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+
+    background-color: #fffaf8;
+
+    border: 1px solid #ead5d5;
+    border-radius: 8px;
+
+    outline: none;
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
+}
+
+
+/* PLACEHOLDER */
+
+main input::placeholder {
+    color: #b5a0a3;
+}
+
+
+/* EFECTO AL ESCRIBIR */
+
+main input[type="text"]:focus,
+main input[type="password"]:focus,
+main input[type="number"]:focus,
+main input[type="date"]:focus {
+    background-color: var(--blanco);
+
+    border-color: var(--rosa-fuerte);
+
+    box-shadow: 0 0 0 3px rgba(217, 154, 154, 0.15);
+}
+
+
+/* CALENDARIO */
+
+main input[type="date"] {
+    color-scheme: light;
+}
+
+
+/* ==========================================
+   CASILLA DE VERIFICACIÓN
+   ========================================== */
+
+main input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+
+    accent-color: var(--bordo);
+
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+main input[type="checkbox"]:focus-visible {
+    outline: 2px solid var(--rosa-fuerte);
+    outline-offset: 3px;
+}
+
+
+/* ==========================================
+   BOTONES
+   ========================================== */
+
+main button {
+    width: 100%;
+    min-height: 46px;
+
+    margin-top: 16px;
+    padding: 12px 18px;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    border-radius: 8px;
+
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* BOTÓN ENVIAR */
+
+main button[type="submit"] {
+    color: var(--blanco);
+
+    background-color: var(--bordo);
+
+    border: 1px solid var(--bordo);
+
+    box-shadow: 0 5px 12px rgba(119, 59, 75, 0.12);
+}
+
+main button[type="submit"]:hover {
+    background-color: #925366;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 18px rgba(119, 59, 75, 0.18);
+}
+
+
+/* BOTÓN VOLVER */
+
+main button[type="button"] {
+    color: var(--bordo);
+
+    background-color: var(--blanco);
+
+    border: 1px solid #dfb9bf;
+}
+
+main button[type="button"]:hover {
+    background-color: var(--rosa);
+
+    transform: translateY(-2px);
+}
+
+
+/* ACCESIBILIDAD */
+
+main button:focus-visible {
+    outline: 2px solid var(--bordo);
+    outline-offset: 3px;
+}
+
+
+/* ENLACE DEL BOTÓN VOLVER */
+
+main a {
+    display: block;
+    width: 100%;
+
+    text-decoration: none;
+}
+
+
+
+footer {
+    position: relative;
+
+    width: 100%;
+    padding: 40px 7% 25px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    text-align: center;
+
+    background: linear-gradient(
+        135deg,
+        #f8eeee,
+        #fffaf5,
+        #f4dada
+    );
+
+    border-top: 1px solid #ead5d5;
+}
+
+
+/* Línea decorativa superior */
+
+footer::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    width: 100px;
+    height: 3px;
+
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+        90deg,
+        #d99a9a,
+        #773b4b
+    );
+
+    border-radius: 0 0 10px 10px;
+}
+
+
+/* ==========================================
+   💗 BOTÓN SOBRE NOSOTRAS
+   ========================================== */
+
+.sobre-nosotras {
+    display: inline-block;
+
+    padding: 12px 28px;
+
+    color: #773b4b;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+    letter-spacing: 0.5px;
+
+    background: #fffaf5;
+
+    border: 1px solid #d9a6af;
+    border-radius: 30px;
+
+    box-shadow: 0 4px 12px rgba(119, 59, 75, 0.06);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Efecto al pasar el cursor */
+
+.sobre-nosotras:hover {
+    color: #ffffff;
+
+    background: #773b4b;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 18px rgba(119, 59, 75, 0.18);
+}
+
+
+/* ==========================================
+   ✨ DERECHOS RESERVADOS
+   ========================================== */
+
+footer h6 {
+    color: #927f83;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* ==========================================
+   🎀 ESLOGAN
+   ========================================== */
+
+.slogan {
+    max-width: 600px;
+
+    color: #773b4b;
+
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.8;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* Detalle decorativo del eslogan */
+
+.slogan::before {
+    content: "✿  ";
+
+    color: #d99a9a;
+}
+
+.slogan::after {
+    content: "  ✿";
+
+    color: #d99a9a;
+}
+

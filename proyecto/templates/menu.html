@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Cafetería OLPI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='menu.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://ipm.edu.ar/assets/img/logo.png" alt="Logo IPM">
+        </div>
+        <h2>Cafetería OLPI</h2>
+        
+       <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="hamburger"></label>
+
+        <nav class="menu">
+            <a href="{{url_for('index')}}">Inicio</a>
+            <a href="{{url_for('receta')}}">Receta de milanesa</a>
+            <a href="{{url_for('album')}}">Álbum de plantas</a>
+            <a href="{{url_for('fomulario')}}">Formulario</a>
+            <a href="{{url_for('naves')}}">videos de naves espaciales</a>
+        </nav>
+   
+    </header>
+
+    <main>
+        <h1 class="titulo-menu">Nuestro Menú</h1>
+
+        <!-- SECCIÓN DE BEBIDAS -->
+        <section class="seccion-categoria">
+            <h3 class="categoria-titulo">Bebidas</h3>
+            
+            <div class="menu-grid">
+                <article class="item-menu">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4hBKwv1ShhaXLP17HajiOV4KBM3CgLUr3kvXoXEyfNQ&s=10" alt="imagen de un cafe">
+                    <div class="item-info">
+                        <h4>Café</h4>
+                        <h5>$4500</h5>
+                    </div>
+                </article>
+
+                <article class="item-menu">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCh3T65exJtEOuYKb_cWkG3caql5r8Pe0yvkPDU9-6IQ&s=10" alt="imagen de un cafe frio">
+                    <div class="item-info">
+                        <h4>Café frío</h4>
+                        <h5>$4500</h5>
+                    </div>
+                </article>
+
+                <article class="item-menu">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ_HzyvimOlEFwaebLocfHKPXaSCBn4ZLNDC9TOWF3Xw&s=10" alt="imagen de limonada">
+                    <div class="item-info">
+                        <h4>Limonada</h4>
+                        <h5>$3000</h5>
+                    </div>
+                </article>
+
+                <article class="item-menu">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKWO5DFKh_M9UPu5hldd0yQl_QOE1R30X3ZU_U3uw-5A&s=10" alt="imagen de jugos">
+                    <div class="item-info">
+                        <h4>Jugos</h4>
+                        <h5>$5000</h5>
+                    </div>
+                </article>
+
+                <article class="item-menu">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzIJSWqQgD_DeVn8NtYOIrOuRZ2eDBWNuJijwMaxhg9Q&s=10" alt="imagen de licuados">
+                    <div class="item-info">
+                        <h4>Licuados</h4>
+                        <h5>$5000</h5>
+                    </div>
+                </article>
+
+                <article class="item-menu">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2FbIOeD72rI-gy2sOBYSXcEJ9EvyxbDEgnYt_0pNA9g&s=10" alt="imagen de smoothies">
+                    <div class="item-info">
+                        <h4>Smoothies</h4>
+                        <h5>$6000</h5>
+                    </div>
+                </article>
+
+                <article class="item-menu">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0rmrCkWNFs3QhtiR1FvkkTw331As3gBpd3-3dBUQjtg&s=10" alt="imagen de té">
+                    <div class="item-info">
+                        <h4>Té</h4>
+                        <h5>$3900</h5>
+                    </div>
+                </article>
+
+                <article class="item-menu">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTccJjbSxqphIC3EVymoHQI0QW3E2Hw7TP-FgR8OiZYjQ&s=10" alt="imagen de un matcha">
+                    <div class="item-info">
+                        <h4>Matcha</h4>
+                        <h5>$6500</h5>
+                    </div>
+                </article>
+
+                <article class="item-menu">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTb28vhPIPkGAArwDCi-q0fLWriDV-kht64deYIFVcPA&s=10" alt="imagen de una gaseosa">
+                    <div class="item-info">
+                        <h4>Gaseosas</h4>
+                        <h5>$3500</h5>
+                    </div>
+                </article>
+
+                <article class="item-menu">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlMcRWFvsZruHy0O9axgqhz5e-rG4saTwHhignZya4rw&s=10" alt="imagen de agua">
+                    <div class="item-info">
+                        <h4>Agua</h4>
+                        <h5>$2000</h5>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE COMIDAS -->
+        <section class="seccion-categoria">
+            <h3 class="categoria-titulo">Comidas</h3>
+            
+            <div class="menu-grid">
+                <article class="item-menu">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpuEA-BMlLOBp1uRNMolswDrd8ao7Il5Y2cugAdUbKHw&s=10" alt="imagen de macarrones">
+                    <div class="item-info">
+                        <h4>Macarrones</h4>
+                        <h5>$13300</h5>
+                    </div>
+                </article>
+
+                <article class="item-menu">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPYuvYGaGejmPIEGVuCYTgkoQzz_p1GXqGJQaJ-9y85w&s=10" alt="imagen de croissant">
+                    <div class="item-info">
+                        <h4>Croissant</h4>
+                        <h5>$7800</h5>
+                    </div>
+                </article>
+
+                <article class="item-menu">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdOiAq1a9t097yrG03JJcMh_UT_4NzRbdlRYvNyiwBmA&s=10" alt="imagen de tortas">
+                    <div class="item-info">
+                        <h4>Tortas</h4>
+                        <h5>$12000</h5>
+                    </div>
+                </article>
+
+                <article class="item-menu">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyT8XWo91xZVkkJhVnuSilt9PSmdjYlN_r4RqM-lsalw&s=10" alt="imagen de tostado">
+                    <div class="item-info">
+                        <h4>Tostado</h4>
+                        <h5>$13300</h5>
+                    </div>
+                </article>
+
+                <article class="item-menu">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBz74QFYu2Xz3rmLxwJ_s9xq2iek7c9_jLM4h1sz-6zg&s=10" alt="imagen de chipá">
+                    <div class="item-info">
+                        <h4>Chipá</h4>
+                        <h5>$8000</h5>
+                    </div>
+                </article>
+
+                <article class="item-menu">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn8nF9RzLImQuGI0et80CYNdKkDwUC2UM_RCvX03fs_Q&s=10" alt="imagen de scon de queso">
+                    <div class="item-info">
+                        <h4>Scón de queso</h4>
+                        <h5>$8500</h5>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a href="{{url_for('footer')}}" class="sobre-nosotras">Sobre nosotras</a>
+        <h6>© 2026. Todos los derechos reservados</h6>
+        <p class="slogan">"Pili y Oli: entre trenzas, rulos y líneas de código, crean sueños que cobran vida."</p>
+    </footer>
+</body>
+</html>

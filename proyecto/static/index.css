@@ -1,0 +1,534 @@
+/* =========================================
+   CONFIGURACIÓN GENERAL
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #f5f2f4;
+
+    color: #383342;
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+header {
+    height: 145px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        135deg,
+        #4b3b50,
+        #65516b
+    );
+
+    box-shadow:
+        0 6px 22px rgba(65, 50, 70, 0.18);
+
+    overflow: hidden;
+}
+
+
+/* Decoración */
+
+header::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    background-color: #b89caf;
+
+    opacity: 0.12;
+
+    left: -70px;
+    top: -80px;
+}
+
+header::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    background-color: #d5b8c5;
+
+    opacity: 0.10;
+
+    right: -90px;
+    bottom: -130px;
+}
+
+
+/* =========================================
+   TITULO
+========================================= */
+
+header h1 {
+    position: relative;
+
+    z-index: 2;
+
+    color: #fffafc;
+
+    /*
+       Fuente manuscrita / lettering
+    */
+
+    font-family:
+        "Brush Script MT",
+        "Segoe Script",
+        "Lucida Handwriting",
+        cursive;
+
+    font-size: 68px;
+
+    font-weight: normal;
+
+    font-style: italic;
+
+    letter-spacing: 2px;
+
+    text-align: center;
+
+    text-transform: none;
+
+    line-height: 1;
+
+    text-shadow:
+        2px 4px 7px rgba(0, 0, 0, 0.20);
+}
+
+
+/* =========================================
+   LOGO IPM
+========================================= */
+
+.logo {
+    position: absolute;
+
+    left: 28px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    padding: 0;
+
+    z-index: 3;
+
+    transition:
+        transform 0.3s ease;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+    background: transparent;
+
+    filter:
+        drop-shadow(
+            0 2px 3px rgba(0, 0, 0, 0.25)
+        );
+}
+
+.logo:hover {
+    transform:
+        translateY(-50%)
+        rotate(-5deg)
+        scale(1.08);
+}
+
+
+
+
+/* =========================================
+   CONTENIDO PRINCIPAL
+========================================= */
+
+main {
+    width: 780px;
+
+    max-width: 90%;
+
+    margin: 55px auto 65px;
+
+    flex: 1;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+
+/* =========================================
+   LISTA
+========================================= */
+
+main ul {
+    list-style: none;
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 17px;
+
+    padding: 0;
+
+    margin: 0;
+}
+
+
+/* =========================================
+   ELEMENTOS DE LA LISTA
+========================================= */
+
+main li {
+    width: 100%;
+}
+
+
+/* =========================================
+   TARJETAS / ENLACES
+========================================= */
+
+main li a {
+    position: relative;
+
+    min-height: 86px;
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px 35px;
+
+    background-color: #fffdfd;
+
+    border-radius: 18px;
+
+    border: 1px solid #e7dfe5;
+
+    text-decoration: none;
+
+    color: #4a4350;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.3px;
+
+    text-align: center;
+
+    box-shadow:
+        0 5px 16px rgba(67, 52, 72, 0.07);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        color 0.3s ease;
+}
+
+
+/* =========================================
+   DETALLE LATERAL
+========================================= */
+
+main li a::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 6px;
+
+    transition:
+        width 0.3s ease;
+}
+
+
+/* =========================================
+   COLORES
+   MISMA FAMILIA, MÁS SUAVES
+========================================= */
+
+/* Plantas */
+
+main li:nth-child(1) a::before {
+    background-color: #9b7e8f;
+}
+
+
+/* Milanesa */
+
+main li:nth-child(2) a::before {
+    background-color: #b98270;
+}
+
+
+/* Naves */
+
+main li:nth-child(3) a::before {
+    background-color: #777096;
+}
+
+
+/* Formulario */
+
+main li:nth-child(4) a::before {
+    background-color: #b49a68;
+}
+
+
+/* Cafetería */
+
+main li:nth-child(5) a::before {
+    background-color: #718a96;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+main li a:hover {
+    transform: translateX(8px);
+
+    box-shadow:
+        0 10px 25px rgba(67, 52, 72, 0.12);
+}
+
+main li a:hover::before {
+    width: 11px;
+}
+
+
+/* =========================================
+   COLOR DEL TEXTO AL PASAR EL MOUSE
+========================================= */
+
+main li:nth-child(1) a:hover {
+    color: #806274;
+}
+
+main li:nth-child(2) a:hover {
+    color: #9d6959;
+}
+
+main li:nth-child(3) a:hover {
+    color: #625a82;
+}
+
+main li:nth-child(4) a:hover {
+    color: #947c4e;
+}
+
+main li:nth-child(5) a:hover {
+    color: #58737e;
+}
+
+
+/* =========================================
+   PEQUEÑO EFECTO DE LUZ
+========================================= */
+
+main li a::after {
+    content: "";
+
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    right: -45px;
+    top: -45px;
+
+    background-color: #e8dce4;
+
+    opacity: 0.35;
+
+    transition:
+        transform 0.4s ease;
+}
+
+main li a:hover::after {
+    transform: scale(1.5);
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    min-height: 125px;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px 40px;
+
+    margin-top: auto;
+
+    background-color: #403743;
+
+    color: white;
+
+    box-shadow:
+        0 -4px 18px rgba(65, 50, 70, 0.10);
+}
+
+
+/* =========================================
+   SOBRE NOSOTRAS
+========================================= */
+
+.sobre-nosotras {
+    position: absolute;
+
+    left: 30px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    padding: 11px 21px;
+
+    background-color: #c5a7b6;
+
+    color: #403743;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    border-radius: 22px;
+
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.sobre-nosotras:hover {
+    transform:
+        translateY(-50%)
+        scale(1.05);
+
+    background-color: #dbc5d0;
+}
+
+
+/* =========================================
+   COPYRIGHT
+========================================= */
+
+footer h6 {
+    color: #d9d1da;
+
+    font-size: 12px;
+
+    font-weight: normal;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   SLOGAN
+========================================= */
+
+.slogan {
+    position: absolute;
+
+    right: 30px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    max-width: 300px;
+
+    color: #cfc4d0;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 12px;
+
+    font-style: italic;
+
+    line-height: 1.5;
+
+    text-align: right;
+}
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu principal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <header>
+        <h1>ENLACES</h1>
+        <div class="logo">
+            <img src="https://ipm.edu.ar/assets/img/logo.png" alt="Logo IPM">
+        </div>    
+
+    </header>
+    <main>
+        
+        <ul>
+            <li><a href="{{url_for('album')}}">album de plantas</a></li>
+            <li><a href="{{url_for('receta')}}">receta de una milanesa</a></li>
+            <li><a href="{{url_for('naves')}}">videos de naves espaciales</a></li>
+            <li><a href="{{url_for('fomulario')}}">llenar un formulario</a></li>
+            <li><a href="{{url_for('menu')}}">menu de cafeteria </a></li>
+        </ul>
+       
+    </main>
+     <footer>
+
+        <a href="{{url_for('footer')}}" class="sobre-nosotras">Sobre nosotras</a>
+
+        <h6>
+            © 2026. Todos los derechos reservados
+        </h6>
+
+        <p class="slogan">
+            "Pili y Oli: entre trenzas, rulos y líneas de código, crean sueños que cobran vida."
+        </p>
+
+    </footer>
+</body>
+</html>

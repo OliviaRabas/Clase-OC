@@ -1,0 +1,489 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --fondo: #080b18;
+    --fondo-secundario: #10162b;
+    --violeta: #a78bfa;
+    --violeta-fuerte: #7c3aed;
+    --celeste: #67e8f9;
+    --blanco: #f8fafc;
+    --gris: #a5b4c8;
+    --borde: rgba(167, 139, 250, 0.2);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--blanco);
+
+    background:
+        radial-gradient(
+            ellipse at 15% 10%,
+            rgba(124, 58, 237, 0.16),
+            transparent 40%
+        ),
+        radial-gradient(
+            ellipse at 85% 55%,
+            rgba(34, 211, 238, 0.08),
+            transparent 35%
+        ),
+        var(--fondo);
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ========================================
+   ✨ ENCABEZADO
+   ======================================== */
+
+header {
+    position: relative;
+    z-index: 100;
+
+    width: 100%;
+    min-height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+    padding: 18px 6%;
+
+    background: rgba(8, 11, 24, 0.88);
+    border-bottom: 1px solid var(--borde);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+
+.logo {
+    position: absolute;
+
+    left: 28px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    padding: 0;
+
+    z-index: 3;
+
+    transition:
+        transform 0.3s ease;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+    background: transparent;
+
+    filter:
+        drop-shadow(
+            0 2px 3px rgba(0, 0, 0, 0.25)
+        );
+}
+
+.logo:hover {
+    transform:
+        translateY(-50%)
+        rotate(-5deg)
+        scale(1.08);
+}
+/* ---------- TÍTULO ---------- */
+
+header h2 {
+    flex: 1;
+
+    color: var(--blanco);
+    font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+
+    text-align: center;
+}
+
+header h2::after {
+    content: "";
+    display: block;
+
+    width: 55px;
+    height: 3px;
+
+    margin: 10px auto 0;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        90deg,
+        var(--violeta),
+        var(--celeste)
+    );
+}
+
+
+/* ========================================
+   🍔 MENÚ HAMBURGUESA
+   Sin JavaScript
+   ======================================== */
+
+#menu-toggle {
+    display: none;
+}
+
+
+/* Botón hamburguesa */
+
+.hamburger {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;
+    height: 50px;
+
+    flex-shrink: 0;
+    margin-left: auto;
+
+    cursor: pointer;
+
+    border: 1px solid var(--borde);
+    border-radius: 15px;
+
+    background: var(--fondo-secundario);
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/* Líneas del menú */
+
+.hamburger::before,
+.hamburger::after {
+    content: "";
+
+    position: absolute;
+
+    width: 23px;
+    height: 2px;
+
+    border-radius: 10px;
+
+    background: var(--celeste);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.hamburger::before {
+    transform: translateY(-6px);
+}
+
+.hamburger::after {
+    transform: translateY(6px);
+}
+
+
+/* Efecto al pasar el mouse */
+
+.hamburger:hover {
+    background: rgba(124, 58, 237, 0.2);
+    border-color: var(--violeta);
+
+    transform: scale(1.05);
+}
+
+
+/* Cambia la hamburguesa por una X */
+
+#menu-toggle:checked + .hamburger::before {
+    transform: rotate(45deg);
+}
+
+#menu-toggle:checked + .hamburger::after {
+    transform: rotate(-45deg);
+}
+
+#menu-toggle:focus-visible + .hamburger {
+    outline: 2px solid var(--celeste);
+    outline-offset: 4px;
+}
+
+
+/* ========================================
+   🧭 NAVEGACIÓN DESPLEGABLE
+   ======================================== */
+
+.menu {
+    position: absolute;
+
+    top: calc(100% + 12px);
+    right: 6%;
+
+    width: min(290px, 88vw);
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    padding: 12px;
+
+    background: rgba(16, 22, 43, 0.98);
+
+    border: 1px solid var(--borde);
+    border-radius: 20px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.45),
+        0 0 25px rgba(124, 58, 237, 0.08);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(-10px) scale(0.97);
+    transform-origin: top right;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+/* Mostrar el menú al marcar el checkbox */
+
+#menu-toggle:checked ~ .menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform: translateY(0) scale(1);
+}
+
+
+/* Enlaces */
+
+.menu a {
+    display: block;
+
+    padding: 14px 16px;
+
+    color: var(--gris);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    border-radius: 12px;
+    border: 1px solid transparent;
+
+    transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        padding-left 0.25s ease;
+}
+
+.menu a:hover,
+.menu a:focus-visible {
+    color: var(--blanco);
+
+    background: linear-gradient(
+        90deg,
+        rgba(124, 58, 237, 0.2),
+        rgba(103, 232, 249, 0.07)
+    );
+
+    border-color: var(--borde);
+    padding-left: 22px;
+    outline: none;
+}
+
+
+/* ========================================
+   🚀 CONTENIDO PRINCIPAL
+   ======================================== */
+
+main {
+    width: min(1200px, 88%);
+    margin: 0 auto;
+
+    padding: 75px 0 90px;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 35px;
+
+    flex: 1;
+}
+
+
+/* Tarjetas de video */
+
+main iframe {
+    display: block;
+
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    border-radius: 20px;
+
+    background: var(--fondo-secundario);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.25),
+        0 0 0 rgba(124, 58, 237, 0);
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+/* Efecto profesional al pasar el mouse */
+
+main iframe:hover {
+    transform: translateY(-7px);
+
+    border-color: var(--celeste);
+
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(103, 232, 249, 0.1);
+}
+
+
+/* ========================================
+   💜 PIE DE PÁGINA
+   ======================================== */
+
+footer {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+
+    padding: 35px 6% 25px;
+
+    text-align: center;
+
+    background: rgba(16, 22, 43, 0.7);
+
+    border-top: 1px solid var(--borde);
+}
+
+
+/* Línea decorativa */
+
+footer::before {
+    content: "";
+
+    position: absolute;
+
+    top: -1px;
+    left: 50%;
+
+    width: 100px;
+    height: 2px;
+
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+        90deg,
+        var(--violeta),
+        var(--celeste)
+    );
+}
+
+
+/* Enlace sobre nosotras */
+
+.sobre-nosotras {
+    display: inline-block;
+
+    padding: 11px 23px;
+
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    border: 1px solid var(--borde);
+    border-radius: 50px;
+
+    background: rgba(124, 58, 237, 0.12);
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.sobre-nosotras:hover {
+    background: rgba(124, 58, 237, 0.3);
+
+    border-color: var(--violeta);
+
+    transform: translateY(-3px);
+}
+
+
+/* Copyright */
+
+footer h6 {
+    color: #8491a8;
+
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+
+/* Eslogan */
+
+.slogan {
+    max-width: 600px;
+
+    color: var(--gris);
+
+    font-size: 0.9rem;
+    line-height: 1.7;
+    font-style: italic;
+}

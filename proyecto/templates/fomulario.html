@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulario</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='formulario.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://ipm.edu.ar/assets/img/logo.png" alt="Logo IPM">
+        </div>
+        <h2>Formulario</h2>
+        <input type="checkbox" id="menu-toggle">
+
+        <label for="menu-toggle" class="hamburger"></label>
+
+        <nav class="menu">
+           <a href="{{url_for('index')}}">Inicio</a>
+            <a href="{{url_for('receta')}}">receta de milanesa</a>
+            <a href="{{url_for('album')}}">album de plantas</a>
+            <a href="{{url_for('naves')}}">videos de naves espaciales</a>
+            <a href="{{url_for('menu')}}">menu de cafeteria</a>
+        </nav>
+    </header>
+    <main>
+
+        <label>Nombre:</label>
+        <input type="text" placeholder="Escribe tu nombre" required>
+        <br>
+
+        <!-- Campo de contraseña (los caracteres se ocultan) -->
+        <label>Contraseña:</label>
+        <input type="password" placeholder="Tu clave secreta">
+        <br>
+
+        <!-- Campo numérico -->
+        <label>Edad:</label>
+        <input type="number" min="18" max="99">
+        <br>
+
+        <!-- Casilla de verificación -->
+        <label>Acepto términos:</label>
+        <input type="checkbox" name="terms">
+        <br>
+
+        <!-- Selector de fecha -->
+        <label>Fecha de Nacimiento:</label>
+        <input type="date">
+        <br>
+
+        <!-- Botón de envío -->
+        <button type="submit">Enviar Datos</button>
+        <br>
+        <a href="index.html">
+            <button type="button">Volver al Index</button>
+        </a>
+    </main>
+    <footer>
+         <a href="{{url_for('footer')}}" class="sobre-nosotras">Sobre nosotras</a>
+
+        <h6>
+            © 2026. Todos los derechos reservados
+        </h6>
+
+        <p class="slogan">
+            "Pili y Oli: entre trenzas, rulos y líneas de código, crean sueños que cobran vida."
+        </p>
+    </footer>
+    
+</body>
+</html>

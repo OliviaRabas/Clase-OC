@@ -1,0 +1,354 @@
+/* ==========================================
+   ESTILOS GENERALES Y VARIABLES (Cafetería OLPI)
+   ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --primary-color: #3b2314;       /* Café espresso oscuro */
+    --accent-color: #c28e50;        /* Tono tostado / madera cálida */
+    --bg-cream: #fbf9f5;            /* Fondo crema suave */
+    --card-bg: #ffffff;             /* Blanco puro para tarjetas */
+    --text-color: #2c221e;          /* Texto principal suave */
+    --shadow-soft: 0 10px 30px rgba(59, 35, 20, 0.08);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================
+   HEADER Y LOGO
+   ========================================== */
+header {
+    position: relative;
+    background: var(--card-bg);
+    padding: 1.2rem 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    z-index: 100;
+}
+
+/* --- Modificación solicitada para el Logo --- */
+.logo {
+    position: absolute;
+    left: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    padding: 0;
+    z-index: 3;
+    transition: transform 0.3s ease;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: transparent;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.25));
+}
+
+.logo:hover {
+    transform: translateY(-50%) rotate(-5deg) scale(1.08);
+}
+/* ------------------------------------------- */
+
+header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================
+   MENÚ DE NAVEGACIÓN Y HAMBURGUESA
+   ========================================== */
+#menu-toggle {
+    display: none;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    width: 30px;
+    height: 22px;
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+}
+
+.hamburger::before,
+.hamburger::after,
+.hamburger span {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+.hamburger::before { top: 0; }
+.hamburger::after { bottom: 0; }
+/* Simulación de la línea del medio con un pseudo-elemento extra o usamos un truco limpio */
+.hamburger {
+    background: linear-gradient(to bottom, 
+        var(--primary-color) 0%, var(--primary-color) 20%, 
+        transparent 20%, transparent 40%, 
+        var(--primary-color) 40%, var(--primary-color) 60%, 
+        transparent 60%, transparent 80%, 
+        var(--primary-color) 80%, var(--primary-color) 100%);
+}
+
+.menu {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    position: relative;
+}
+
+.menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: var(--transition);
+}
+
+.menu a:hover {
+    color: var(--accent-color);
+}
+
+.menu a:hover::after {
+    width: 100%;
+}
+
+/* ==========================================
+   CONTENIDO PRINCIPAL
+   ========================================== */
+main {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+.titulo-menu {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 2.5rem;
+    font-weight: 700;
+}
+
+/* ==========================================
+   SECCIONES Y CATEGORÍAS (Bebidas y Comidas)
+   ========================================== */
+.seccion-categoria {
+    margin-bottom: 4rem;
+}
+
+.categoria-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
+}
+
+/* Grilla de productos */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 2rem;
+}
+
+/* Tarjetas individuales de menú */
+.item-menu {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(194, 142, 80, 0.15);
+}
+
+.item-menu:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(59, 35, 20, 0.12);
+    border-color: var(--accent-color);
+}
+
+.item-menu img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.item-menu:hover img {
+    transform: scale(1.05);
+}
+
+.item-info {
+    padding: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-bg);
+}
+
+.item-info h4 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.item-info h5 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    background: rgba(194, 142, 80, 0.1);
+    padding: 0.3rem 0.7rem;
+    border-radius: 8px;
+}
+
+/* ==========================================
+   PIE DE PÁGINA (FOOTER)
+   ========================================== */
+footer {
+    background-color: var(--primary-color);
+    color: #f3ece4;
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: auto;
+}
+
+footer .sobre-nosotras {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+footer .sobre-nosotras:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+footer h6 {
+    font-size: 0.85rem;
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+footer .slogan {
+    font-style: italic;
+    font-size: 0.95rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-top: 0.3rem;
+    color: #e6dfd5;
+}
+
+/* ==========================================
+   DISEÑO RESPONSIVO (Menú Hamburguesa)
+   ========================================== */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        background: none; /* Limpiamos el fondo si usábamos truco y usamos spans directos */
+    }
+
+    /* Dibujo limpio del botón hamburguesa */
+    .hamburger {
+        background: transparent;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .hamburger::before,
+    .hamburger::after {
+        position: static;
+    }
+
+    /* Agregamos una línea en el medio vía pseudo o estructura limpia */
+    .hamburger span {
+        position: static;
+        display: block;
+    }
+
+    .menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--card-bg);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: clip-path 0.4s ease-in-out;
+        z-index: 99;
+    }
+
+    /* Al marcar el checkbox se abre el menú desplegable (¡sin JS!) */
+    #menu-toggle:checked ~ .menu {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    header h2 {
+        font-size: 1.4rem;
+    }
+
+    .titulo-menu {
+        font-size: 2.2rem;
+    }
+}
