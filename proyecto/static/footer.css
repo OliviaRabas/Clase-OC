@@ -1,3 +1,7 @@
+/* =========================================
+   ESTILOS GENERALES Y RESET
+========================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -6,13 +10,9 @@
 
 body {
     min-height: 100vh;
-
     font-family: Arial, Helvetica, sans-serif;
-
     background-color: #f5f2f4;
-
     color: #443d48;
-
     display: flex;
     flex-direction: column;
 }
@@ -24,27 +24,19 @@ body {
 
 header {
     height: 230px;
-
     position: relative;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     text-align: center;
-
     overflow: visible;
-
     background: linear-gradient(
         135deg,
         #4b3b50,
         #66536c
     );
-
-    box-shadow:
-        0 8px 25px rgba(65, 50, 70, 0.18);
+    box-shadow: 0 8px 25px rgba(65, 50, 70, 0.18);
+    z-index: 100;
 }
 
 
@@ -52,81 +44,90 @@ header {
 
 header::before {
     content: "";
-
     position: absolute;
-
     width: 260px;
     height: 260px;
-
     border-radius: 50%;
-
     background-color: #c7a9b8;
-
     opacity: 0.12;
-
-    left: -100px;
-    top: -120px;
+    left: -80px;
+    top: -100px;
+    pointer-events: none;
 }
 
 header::after {
     content: "";
-
     position: absolute;
-
     width: 300px;
     height: 300px;
-
     border-radius: 50%;
-
     background-color: #d8c1ce;
-
     opacity: 0.10;
-
-    right: -130px;
-    bottom: -170px;
+    right: -100px;
+    bottom: -140px;
+    pointer-events: none;
 }
 
-/* Ocultamos el checkbox físicamente pero lo dejamos interactivo */
+/* Ocultamos el checkbox pero lo hacemos interactivo cubriendo exactamente la zona del label */
 #menu-toggle {
     position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
     opacity: 0;
-    pointer-events: none;
+    cursor: pointer;
+    z-index: 105;
 }
 
 /* Botón hamburguesa fijo arriba a la derecha */
 .hamburger {
     display: block;
     cursor: pointer;
-    width: 28px;
-    height: 20px;
+    width: 36px;
+    height: 36px;
     position: absolute;
     right: 28px;
     top: 50%;
     transform: translateY(-50%);
     z-index: 102;
     background: transparent;
+    pointer-events: none; /* Permite que el click atraviese el label y toque el input */
 }
 
-/* Dibujamos las líneas con pseudo-elementos (sin usar span) */
+/* Dibujamos las líneas con pseudo-elementos (centradas) */
 .hamburger::before,
 .hamburger::after {
     content: '';
     position: absolute;
-    left: 0;
-    width: 100%;
+    left: 4px;
+    width: 28px;
     height: 3px;
-    background-color: var(--primary-color, #3b2314);
+    background-color: #fffafc;
     border-radius: 2px;
     transition: all 0.3s ease;
 }
 
 .hamburger::before {
-    top: 0;
-    box-shadow: 0 8px 0 var(--primary-color, #3b2314);
+    top: 10px;
+    box-shadow: 0 9px 0 #fffafc;
 }
 
 .hamburger::after {
-    bottom: 0;
+    bottom: 10px;
+}
+
+/* Animación del menú hamburguesa al marcar el checkbox */
+#menu-toggle:checked ~ .hamburger::before {
+    top: 16px;
+    transform: rotate(45deg);
+    box-shadow: none;
+}
+
+#menu-toggle:checked ~ .hamburger::after {
+    bottom: 17px;
+    transform: rotate(-45deg);
 }
 
 /* El menú desplegable oculto por defecto */
@@ -143,18 +144,21 @@ header::after {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transform: translateY(-10px);
     transition: all 0.3s ease-in-out;
     z-index: 9999;
     gap: 1.5rem;
 }
 
-/* Al marcar el checkbox, el menú se muestra y se despliega */
+/* Al marcar el checkbox, el menú se muestra y se despliega con total visibilidad */
 #menu-toggle:checked ~ .menu {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
     transform: translateY(0);
 }
+
 .menu a {
     color: #4b3b50;
     text-decoration: none;
@@ -167,37 +171,29 @@ header::after {
 .menu a:hover {
     color: #a88fa0;
 }
+
+
 /* =========================================
    TITULO
 ========================================= */
 
 header h2 {
     position: relative;
-
     z-index: 2;
-
     color: #fffafc;
-
     font-family:
         "Brush Script MT",
         "Segoe Script",
         "Lucida Handwriting",
         cursive;
-
     font-size: 65px;
-
     font-weight: normal;
-
     font-style: italic;
-
     letter-spacing: 2px;
-
     line-height: 1;
-
-    text-shadow:
-        2px 4px 8px rgba(0, 0, 0, 0.22);
+    text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.22);
+    padding: 0 70px;
 }
-
 
 
 /* =========================================
@@ -206,17 +202,15 @@ header h2 {
 
 .decoracion {
     position: absolute;
-
-    bottom: 30px;
-
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 75px;
     height: 3px;
-
     background-color: #d7bac8;
-
     border-radius: 10px;
-
     opacity: 0.8;
+    z-index: 2;
 }
 
 
@@ -226,11 +220,8 @@ header h2 {
 
 main {
     width: 760px;
-
     max-width: 90%;
-
     margin: 55px auto 70px;
-
     flex: 1;
 }
 
@@ -241,21 +232,13 @@ main {
 
 .presentacion {
     position: relative;
-
     padding: 42px 55px;
-
     background-color: #fffdfd;
-
     border: 1px solid #e7dfe5;
-
     border-radius: 24px;
-
     text-align: center;
-
     overflow: hidden;
-
-    box-shadow:
-        0 8px 25px rgba(67, 52, 72, 0.08);
+    box-shadow: 0 8px 25px rgba(67, 52, 72, 0.08);
 }
 
 
@@ -263,36 +246,24 @@ main {
 
 .presentacion::before {
     content: "";
-
     position: absolute;
-
     width: 120px;
     height: 120px;
-
     border-radius: 50%;
-
     background-color: #d9c2ce;
-
     opacity: 0.25;
-
     top: -65px;
     right: -55px;
 }
 
 .presentacion::after {
     content: "";
-
     position: absolute;
-
     width: 90px;
     height: 90px;
-
     border-radius: 50%;
-
     background-color: #c8bfda;
-
     opacity: 0.20;
-
     bottom: -45px;
     left: -40px;
 }
@@ -304,25 +275,15 @@ main {
 
 .etiqueta {
     position: relative;
-
     z-index: 2;
-
     display: inline-block;
-
     padding: 7px 15px;
-
     margin-bottom: 18px;
-
     background-color: #eee6ec;
-
     color: #765f70;
-
     border-radius: 20px;
-
     font-size: 11px;
-
     font-weight: bold;
-
     letter-spacing: 2px;
 }
 
@@ -333,20 +294,11 @@ main {
 
 .presentacion h2 {
     position: relative;
-
     z-index: 2;
-
     margin-bottom: 20px;
-
     color: #4b3b50;
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
+    font-family: Georgia, "Times New Roman", serif;
     font-size: 29px;
-
     line-height: 1.3;
 }
 
@@ -357,15 +309,10 @@ main {
 
 .presentacion > p:last-child {
     position: relative;
-
     z-index: 2;
-
     color: #716a74;
-
     font-size: 16px;
-
     line-height: 1.8;
-
     text-align: center;
 }
 
@@ -376,34 +323,22 @@ main {
 
 .redes {
     margin-top: 35px;
-
     padding: 32px;
-
     background-color: #ebe4e9;
-
     border-radius: 22px;
-
     text-align: center;
 }
 
 .redes h3 {
     margin-bottom: 8px;
-
     color: #4b3b50;
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
+    font-family: Georgia, "Times New Roman", serif;
     font-size: 25px;
 }
 
 .redes > p {
     margin-bottom: 22px;
-
     color: #756d77;
-
     font-size: 14px;
 }
 
@@ -414,38 +349,20 @@ main {
 
 .red-social {
     width: 210px;
-
     margin: 0 auto;
-
     padding: 12px 18px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 12px;
-
     background-color: #fffdfd;
-
     border: 1px solid #dfd4dc;
-
     border-radius: 14px;
-
     color: #514852;
-
     text-decoration: none;
-
     font-weight: bold;
-
-    box-shadow:
-        0 5px 15px rgba(67, 52, 72, 0.08);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        background-color 0.25s ease;
+    box-shadow: 0 5px 15px rgba(67, 52, 72, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
 }
 
 
@@ -454,9 +371,7 @@ main {
 .red-social img {
     width: 32px;
     height: 32px;
-
     object-fit: contain;
-
     display: block;
 }
 
@@ -465,9 +380,7 @@ main {
 
 .red-social p {
     margin: 0;
-
     color: #514852;
-
     font-size: 15px;
 }
 
@@ -478,11 +391,8 @@ main {
 
 .red-social:hover {
     transform: translateY(-4px);
-
     background-color: #f9f1f6;
-
-    box-shadow:
-        0 9px 20px rgba(67, 52, 72, 0.14);
+    box-shadow: 0 9px 20px rgba(67, 52, 72, 0.14);
 }
 
 
@@ -492,31 +402,156 @@ main {
 
 footer {
     min-height: 100px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     padding: 25px;
-
     background-color: #403743;
-
     color: #d9d1da;
-
     text-align: center;
 }
 
 footer p {
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
+    font-family: Georgia, "Times New Roman", serif;
     font-size: 13px;
-
     font-style: italic;
-
     letter-spacing: 0.5px;
+}
+
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 1024px) {
+    header {
+        height: 200px;
+    }
+
+    header h2 {
+        font-size: 52px;
+        padding: 0 55px;
+    }
+
+    main {
+        width: 85%;
+        margin: 45px auto 60px;
+    }
+
+    .presentacion {
+        padding: 35px 40px;
+    }
+
+    .presentacion h2 {
+        font-size: 26px;
+    }
+}
+
+
+/* =========================================
+   CELULARES
+========================================= */
+
+@media (max-width: 600px) {
+    header {
+        height: 160px;
+    }
+
+    header h2 {
+        font-size: clamp(32px, 9vw, 42px);
+        letter-spacing: 1px;
+        padding: 0 50px;
+    }
+
+    .hamburger,
+    #menu-toggle {
+        right: 20px;
+    }
+
+    main {
+        width: 90%;
+        margin: 30px auto 45px;
+    }
+
+    .presentacion {
+        padding: 25px 20px;
+        border-radius: 18px;
+    }
+
+    .presentacion h2 {
+        font-size: clamp(22px, 5.5vw, 26px);
+    }
+
+    .presentacion > p:last-child {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .redes {
+        padding: 24px 18px;
+        margin-top: 25px;
+        border-radius: 18px;
+    }
+
+    .redes h3 {
+        font-size: 22px;
+    }
+
+    footer {
+        min-height: 80px;
+        padding: 20px 15px;
+    }
+
+    footer p {
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================
+   CELULARES PEQUEÑOS
+========================================= */
+
+@media (max-width: 360px) {
+    header {
+        height: 140px;
+    }
+
+    header h2 {
+        font-size: 28px;
+        padding: 0 45px;
+    }
+
+    .hamburger,
+    #menu-toggle {
+        right: 15px;
+    }
+
+    .presentacion {
+        padding: 20px 15px;
+    }
+
+    .presentacion h2 {
+        font-size: 20px;
+    }
+
+    .redes {
+        padding: 20px 12px;
+    }
+}
+
+
+/* =========================================
+   ACCESIBILIDAD: MENOS ANIMACIONES
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
 }

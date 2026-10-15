@@ -1,10 +1,20 @@
+/* ================================
+   CONFIGURACION GENERAL
+================================ */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    width: 100%;
+    overflow-x: clip;
+}
+
 body {
+    width: 100%;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f3f7f0;
     color: #29452f;
@@ -16,11 +26,12 @@ body {
 ================================ */
 
 header {
-    height: 105px;
+    min-height: 105px;
+    padding: 15px 85px;
 
     background: linear-gradient(
         135deg,
-        #163d28,
+        #520404,
         #276749,
         #40916c
     );
@@ -29,7 +40,6 @@ header {
 
     display: flex;
     align-items: center;
-
     justify-content: center;
 
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.20);
@@ -38,15 +48,14 @@ header {
 }
 
 
-/* =========================================
+/* ================================
    LOGO IPM
-========================================= */
+================================ */
 
 .logo {
     position: absolute;
 
     left: 28px;
-
     top: 50%;
 
     transform: translateY(-50%);
@@ -55,7 +64,6 @@ header {
     height: 42px;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -65,8 +73,7 @@ header {
 
     z-index: 3;
 
-    transition:
-        transform 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .logo img {
@@ -79,10 +86,9 @@ header {
 
     background: transparent;
 
-    filter:
-        drop-shadow(
-            0 2px 3px rgba(0, 0, 0, 0.25)
-        );
+    filter: drop-shadow(
+        0 2px 3px rgba(0, 0, 0, 0.25)
+    );
 }
 
 .logo:hover {
@@ -91,7 +97,6 @@ header {
         rotate(-5deg)
         scale(1.08);
 }
-
 
 
 /* ================================
@@ -104,15 +109,16 @@ header h1 {
     font-family: Georgia, "Times New Roman", serif;
 
     font-size: 38px;
-
     letter-spacing: 3px;
 
     text-transform: uppercase;
-
     text-align: center;
 
-    text-shadow:
-        2px 3px 5px rgba(0, 0, 0, 0.35);
+    line-height: 1.2;
+
+    overflow-wrap: break-word;
+
+    text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.35);
 }
 
 
@@ -121,7 +127,21 @@ header h1 {
 ================================ */
 
 #menu-toggle {
-    display: none;
+    position: absolute;
+
+    right: 25px;
+    top: 50%;
+
+    width: 45px;
+    height: 45px;
+
+    transform: translateY(-50%);
+
+    opacity: 0;
+
+    cursor: pointer;
+
+    z-index: 202;
 }
 
 .hamburger {
@@ -137,12 +157,10 @@ header h1 {
 
     cursor: pointer;
 
-    z-index: 200;
+    z-index: 201;
 
-    background:
-        linear-gradient(white, white)
-        center / 30px 3px
-        no-repeat;
+    background: linear-gradient(white, white)
+        center / 30px 3px no-repeat;
 }
 
 .hamburger::before,
@@ -172,7 +190,9 @@ header h1 {
 }
 
 
-/* MENU ABIERTO */
+/* ================================
+   MENU ABIERTO
+================================ */
 
 #menu-toggle:checked + .hamburger::before {
     top: 21px;
@@ -199,32 +219,39 @@ header h1 {
     position: absolute;
 
     right: 25px;
-    top: 105px;
+    top: 100%;
 
     width: 220px;
+    max-width: calc(100vw - 30px);
 
     background-color: white;
 
     border-radius: 0 0 15px 15px;
 
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.20);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.20);
 
     overflow: hidden;
 
     opacity: 0;
-
     visibility: hidden;
+    pointer-events: none;
 
     transform: translateY(-15px);
 
-    transition: 0.3s ease;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.3s ease;
+
+    z-index: 200;
 }
 
 #menu-toggle:checked ~ .menu {
     opacity: 1;
 
     visibility: visible;
+
+    pointer-events: auto;
 
     transform: translateY(0);
 }
@@ -239,12 +266,14 @@ header h1 {
     text-decoration: none;
 
     font-size: 16px;
-
     font-weight: bold;
 
     border-bottom: 1px solid #e3eee5;
 
-    transition: 0.25s ease;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        padding-left 0.25s ease;
 }
 
 .menu a:last-child {
@@ -262,18 +291,18 @@ header h1 {
 
 /* ================================
    ALBUM
+   COMPUTADOR: 3 TARJETAS POR FILA
 ================================ */
 
 main {
     width: 90%;
-
     max-width: 1250px;
 
     margin: 60px auto;
 
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
     gap: 45px 35px;
 }
@@ -306,10 +335,23 @@ main {
 
 
 /* ================================
-   GIRO
+   GIRO CON MOUSE
 ================================ */
 
-.tarjeta:hover .tarjeta-interior {
+@media (hover: hover) and (pointer: fine) {
+
+    .tarjeta:hover .tarjeta-interior {
+        transform: rotateY(180deg);
+    }
+
+}
+
+
+/* ================================
+   GIRO POR FOCO
+================================ */
+
+.tarjeta:focus-within .tarjeta-interior {
     transform: rotateY(180deg);
 }
 
@@ -333,8 +375,7 @@ main {
 
     -webkit-backface-visibility: hidden;
 
-    box-shadow:
-        0 8px 20px rgba(35, 75, 45, 0.20);
+    box-shadow: 0 8px 20px rgba(35, 75, 45, 0.20);
 }
 
 
@@ -372,7 +413,6 @@ main {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     text-align: center;
@@ -382,7 +422,7 @@ main {
 
 
 /* ================================
-   NOMBRE
+   NOMBRE DE LAS TARJETAS
 ================================ */
 
 .tarjeta-atras h5 {
@@ -401,11 +441,15 @@ main {
     text-align: center;
 
     width: 100%;
+    max-width: 100%;
 
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 
-    text-shadow:
-        2px 3px 5px rgba(0, 0, 0, 0.30);
+    word-break: normal;
+
+    hyphens: none;
+
+    text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.30);
 }
 
 
@@ -429,7 +473,6 @@ footer {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     padding: 25px 40px;
@@ -438,13 +481,14 @@ footer {
 }
 
 
-/* BOTON SOBRE NOSOTRAS */
+/* ================================
+   BOTON SOBRE NOSOTRAS
+================================ */
 
 .sobre-nosotras {
     position: absolute;
 
     left: 30px;
-
     top: 50%;
 
     transform: translateY(-50%);
@@ -463,7 +507,9 @@ footer {
 
     border-radius: 25px;
 
-    transition: 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
 }
 
 .sobre-nosotras:hover {
@@ -475,7 +521,9 @@ footer {
 }
 
 
-/* TEXTO DEL CENTRO */
+/* ================================
+   TEXTO DEL CENTRO
+================================ */
 
 footer h6 {
     font-size: 12px;
@@ -485,21 +533,24 @@ footer h6 {
     color: #d8f3dc;
 
     text-align: center;
+
+    line-height: 1.5;
 }
 
 
-/* SLOGAN */
+/* ================================
+   SLOGAN
+================================ */
 
 .slogan {
     position: absolute;
 
     right: 30px;
-
     top: 50%;
 
     transform: translateY(-50%);
 
-    max-width: 300px;
+    max-width: 250px;
 
     color: #b7e4c7;
 
@@ -514,3 +565,319 @@ footer h6 {
     text-align: right;
 }
 
+
+/* =========================================
+   TABLETS
+   UNA TARJETA POR FILA
+========================================= */
+
+@media (max-width: 1024px) {
+
+    header {
+        min-height: 95px;
+
+        padding: 15px 75px;
+    }
+
+    header h1 {
+        font-size: 32px;
+
+        letter-spacing: 2px;
+    }
+
+    .logo {
+        left: 20px;
+
+        width: 38px;
+        height: 38px;
+    }
+
+    main {
+        width: 85%;
+
+        margin: 45px auto;
+
+        grid-template-columns: minmax(0, 1fr);
+
+        gap: 30px;
+    }
+
+    .tarjeta {
+        height: 320px;
+    }
+
+    .tarjeta-atras {
+        padding: 25px;
+    }
+
+    .tarjeta-atras h5 {
+        font-size: 25px;
+
+        letter-spacing: 1.5px;
+    }
+
+    footer {
+        padding: 25px 30px;
+    }
+
+    .sobre-nosotras {
+        left: 20px;
+
+        padding: 10px 15px;
+    }
+
+    .slogan {
+        right: 20px;
+
+        max-width: 190px;
+    }
+}
+
+
+/* =========================================
+   CELULARES
+   UNA TARJETA POR FILA
+========================================= */
+
+@media (max-width: 600px) {
+
+    header {
+        min-height: 85px;
+
+        padding: 12px 65px;
+    }
+
+    .logo {
+        left: 12px;
+
+        width: 32px;
+        height: 32px;
+    }
+
+    header h1 {
+        font-size: clamp(17px, 4.5vw, 25px);
+
+        letter-spacing: 1px;
+
+        line-height: 1.25;
+    }
+
+    #menu-toggle,
+    .hamburger {
+        right: 10px;
+
+        width: 40px;
+        height: 40px;
+    }
+
+    .hamburger {
+        background-size: 26px 3px;
+    }
+
+    .hamburger::before,
+    .hamburger::after {
+        left: 7px;
+
+        width: 26px;
+        height: 3px;
+    }
+
+    .hamburger::before {
+        top: 11px;
+    }
+
+    .hamburger::after {
+        bottom: 11px;
+    }
+
+    #menu-toggle:checked + .hamburger::before {
+        top: 19px;
+    }
+
+    #menu-toggle:checked + .hamburger::after {
+        bottom: 19px;
+    }
+
+    .menu {
+        right: 10px;
+
+        width: 210px;
+    }
+
+    .menu a {
+        padding: 16px 18px;
+
+        font-size: 15px;
+    }
+
+    main {
+        width: 90%;
+
+        margin: 30px auto;
+
+        grid-template-columns: minmax(0, 1fr);
+
+        gap: 25px;
+    }
+
+    .tarjeta {
+        height: auto;
+
+        aspect-ratio: 1 / 1;
+    }
+
+    .tarjeta-atras {
+        padding: 15px;
+    }
+
+    .tarjeta-atras h5 {
+        font-size: clamp(16px, 5vw, 24px);
+
+        letter-spacing: 0.5px;
+
+        line-height: 1.4;
+    }
+
+    footer {
+        min-height: 0;
+
+        margin-top: 45px;
+
+        padding: 25px 20px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 20px;
+    }
+
+    .sobre-nosotras {
+        position: static;
+
+        transform: none;
+
+        display: inline-block;
+
+        order: 1;
+
+        text-align: center;
+    }
+
+    .sobre-nosotras:hover {
+        transform: scale(1.03);
+    }
+
+    footer h6 {
+        order: 2;
+
+        font-size: 12px;
+
+        max-width: 100%;
+    }
+
+    .slogan {
+        position: static;
+
+        transform: none;
+
+        order: 3;
+
+        max-width: 280px;
+
+        font-size: 12px;
+
+        text-align: center;
+    }
+}
+
+
+/* =========================================
+   CELULARES PEQUEÑOS
+========================================= */
+
+@media (max-width: 360px) {
+
+    header {
+        padding-left: 48px;
+
+        padding-right: 48px;
+    }
+
+    .logo {
+        left: 8px;
+
+        width: 28px;
+        height: 28px;
+    }
+
+    header h1 {
+        font-size: 16px;
+
+        letter-spacing: 0.5px;
+    }
+
+    #menu-toggle,
+    .hamburger {
+        right: 5px;
+    }
+
+    main {
+        width: 92%;
+
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tarjeta {
+        aspect-ratio: 4 / 5;
+    }
+
+    .tarjeta-atras h5 {
+        font-size: 20px;
+    }
+
+    .tarjeta-atras {
+        padding: 7px;
+    }
+
+    footer {
+        padding: 25px 15px;
+    }
+}
+
+
+/* =========================================
+   ACCESIBILIDAD
+   REDUCIR ANIMACIONES
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+    }
+}
+/* FORZAR UNA TARJETA POR FILA EN TABLETS Y CELULARES */
+
+@media screen and (max-width: 1024px) {
+    main {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        width: 90% !important;
+    }
+
+    main .tarjeta {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+}

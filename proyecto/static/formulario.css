@@ -117,6 +117,8 @@ header {
         rotate(-5deg)
         scale(1.08);
 }
+
+
 /* TÍTULO */
 
 header h2 {
@@ -266,6 +268,8 @@ header h2::after {
         opacity 0.25s ease,
         transform 0.25s ease,
         visibility 0.25s ease;
+    
+    z-index: 9999;
 }
 
 
@@ -527,6 +531,9 @@ main a {
 }
 
 
+/* ==========================================
+   FOOTER
+   ========================================== */
 
 footer {
     position: relative;
@@ -669,3 +676,131 @@ footer h6 {
     color: #d99a9a;
 }
 
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 1024px) {
+    header {
+        padding: 15px 5%;
+    }
+
+    header h2 {
+        font-size: 26px;
+    }
+
+    .logo {
+        left: 20px;
+        width: 38px;
+        height: 38px;
+    }
+
+    main {
+        width: 85%;
+        margin: 45px auto;
+        padding: 35px;
+    }
+}
+
+
+/* =========================================
+   CELULARES
+========================================= */
+
+@media (max-width: 600px) {
+    header {
+        min-height: 90px;
+        padding: 12px 15px;
+        justify-content: center;
+    }
+
+    .logo {
+        left: 12px;
+        width: 32px;
+        height: 32px;
+    }
+
+    header h2 {
+        font-size: clamp(20px, 6vw, 25px);
+        letter-spacing: 1px;
+        padding: 0 35px;
+    }
+
+    .hamburger {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        right: 15px;
+    }
+
+    .menu {
+        right: 15px;
+        width: calc(100% - 30px);
+        max-width: 280px;
+    }
+
+    main {
+        width: 90%;
+        margin: 25px auto;
+        padding: 25px 20px;
+        box-shadow: 6px 6px 0 rgba(244, 218, 218, 0.65), 0 10px 25px rgba(119, 59, 75, 0.07);
+    }
+
+    main h2 {
+        font-size: 24px;
+    }
+
+    footer {
+        padding: 30px 20px 20px;
+    }
+}
+
+
+/* =========================================
+   CELULARES PEQUEÑOS
+========================================= */
+
+@media (max-width: 360px) {
+    header {
+        padding: 10px 10px;
+    }
+
+    header h2 {
+        font-size: 18px;
+        padding: 0 30px;
+    }
+
+    .logo {
+        width: 28px;
+        height: 28px;
+        left: 8px;
+    }
+
+    .hamburger {
+        width: 36px;
+        height: 36px;
+        right: 10px;
+    }
+
+    main {
+        width: 92%;
+        padding: 20px 15px;
+    }
+}
+
+
+/* =========================================
+   ACCESIBILIDAD: MENOS ANIMACIONES
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

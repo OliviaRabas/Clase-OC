@@ -1,3 +1,7 @@
+/* =========================================
+   ESTILOS GENERALES Y RESET
+========================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -117,6 +121,8 @@ header {
         rotate(-5deg)
         scale(1.08);
 }
+
+
 /* ---------- TÍTULO ---------- */
 
 header h2 {
@@ -128,6 +134,7 @@ header h2 {
     letter-spacing: 0.5px;
 
     text-align: center;
+    padding: 0 50px;
 }
 
 header h2::after {
@@ -151,7 +158,6 @@ header h2::after {
 
 /* ========================================
    🍔 MENÚ HAMBURGUESA
-   Sin JavaScript
    ======================================== */
 
 #menu-toggle {
@@ -281,6 +287,8 @@ header h2::after {
         opacity 0.25s ease,
         transform 0.25s ease,
         visibility 0.25s ease;
+    
+    z-index: 9999;
 }
 
 
@@ -486,4 +494,129 @@ footer h6 {
     font-size: 0.9rem;
     line-height: 1.7;
     font-style: italic;
+}
+
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 1024px) {
+    header {
+        min-height: 90px;
+        padding: 15px 5%;
+    }
+
+    .logo {
+        left: 20px;
+        width: 38px;
+        height: 38px;
+    }
+
+    main {
+        width: 90%;
+        gap: 25px;
+        padding: 50px 0 70px;
+    }
+}
+
+
+/* =========================================
+   CELULARES
+========================================= */
+
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+        padding: 40px 0 60px;
+    }
+
+    header {
+        min-height: 85px;
+        padding: 12px 15px;
+    }
+
+    .logo {
+        left: 15px;
+        width: 32px;
+        height: 32px;
+    }
+
+    header h2 {
+        padding: 0 45px;
+        font-size: clamp(1rem, 4vw, 1.4rem);
+    }
+
+    .hamburger {
+        width: 44px;
+        height: 44px;
+    }
+
+    .menu {
+        right: 15px;
+        width: calc(100% - 30px);
+        max-width: 280px;
+    }
+
+    footer {
+        padding: 25px 20px;
+        gap: 15px;
+    }
+
+    .sobre-nosotras {
+        order: 1;
+    }
+
+    footer h6 {
+        order: 2;
+    }
+
+    .slogan {
+        order: 3;
+        font-size: 0.85rem;
+    }
+}
+
+
+/* =========================================
+   CELULARES PEQUEÑOS
+========================================= */
+
+@media (max-width: 360px) {
+    header {
+        padding: 10px 10px;
+    }
+
+    .logo {
+        left: 10px;
+        width: 28px;
+        height: 28px;
+    }
+
+    header h2 {
+        padding: 0 35px;
+        font-size: 0.95rem;
+    }
+
+    .hamburger {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+/* =========================================
+   ACCESIBILIDAD: MENOS ANIMACIONES
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
 }
